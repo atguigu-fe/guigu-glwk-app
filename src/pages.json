@@ -1,0 +1,65 @@
+{
+  "pages": [
+    {
+      "path": "pages/tabbar/index/index",
+      "style": {
+        "navigationBarTitleText": "谷粒微课"
+      }
+    },
+    {
+      "path": "pages/tabbar/course/index",
+      "style": {
+        "navigationBarTitleText": "课程中心"
+      }
+    },
+    {
+      "path": "pages/tabbar/user/index",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      }
+    },
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "登陆中心"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "谷粒微课",
+    "navigationBarBackgroundColor": "#17181a",
+    "backgroundColor": "#000"
+  },
+  "tabBar": {
+    "backgroundColor": "#17181a",
+    "selectedColor": "#409EFF",
+    "color": "#a1a7b2",
+    "list": [
+      {
+        "pagePath": "pages/tabbar/index/index",
+        "iconPath": "static/images/nav/home-off.png",
+        "selectedIconPath": "static/images/nav/home-on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/tabbar/course/index",
+        "iconPath": "static/images/nav/list-off.png",
+        "selectedIconPath": "static/images/nav/list-on.png",
+        "text": "课程"
+      },
+      {
+        "pagePath": "pages/tabbar/user/index",
+        "iconPath": "static/images/nav/my-off.png",
+        "selectedIconPath": "static/images/nav/my-on.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  }
+}
