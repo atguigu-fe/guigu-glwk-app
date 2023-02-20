@@ -25,6 +25,73 @@
       }
     }
   ],
+  "subPackages": [
+    {
+      "root": "pages/course",
+      "pages": [
+        {
+          "path": "detail/index",
+          "style": {
+            "navigationBarTitleText": "课程详情"
+          }
+        },
+        {
+          "path": "comment/index",
+          "style": {
+            "navigationBarTitleText": "课程评论"
+          }
+        },
+        {
+          "path": "collect/index",
+          "style": {
+            "navigationBarTitleText": "收藏列表"
+          }
+        },
+        {
+          "path": "video/index",
+          "style": {
+            "navigationBarTitleText": "课程观看"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/teacher",
+      "pages": [
+        {
+          "path": "list/index",
+          "style": {
+            "navigationBarTitleText": "名师列表"
+          }
+        },
+        {
+          "path": "detail/index",
+          "style": {
+            "navigationBarTitleText": "名师详情",
+            "enablePullDownRefresh": false
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/order",
+      "pages": [
+        {
+          "path": "list/index",
+          "style": {
+            "navigationBarTitleText": "订单列表"
+          }
+        },
+        {
+          "path": "pay/index",
+          "style": {
+            "navigationBarTitleText": "订单支付",
+            "enablePullDownRefresh": false
+          }
+        }
+      ]
+    }
+  ],
   "globalStyle": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "谷粒微课",

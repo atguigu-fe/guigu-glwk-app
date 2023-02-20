@@ -4,7 +4,9 @@ import { defineComponent } from 'vue';
     <view v-for="(item, index) in list" :key="index" class="preferences_list_item">
       <navigator
         class="list_item_card"
-        :url="type == 'course' ? '/pages/course/detail?id=' + item.id : '/pages/teacher/detail?id=' + item.id"
+        :url="
+          type === 'course' ? `/pages/course/detail/index?id=${item.id}` : `/pages/teacher/detail/index?id=${item.id}`
+        "
       >
         <view class="list_item_card_img" :style="{ height: type === 'course' ? '95px' : 'auto' }">
           <image

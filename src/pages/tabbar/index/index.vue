@@ -33,10 +33,10 @@
     </view>
     <!-- 热门 -->
     <view class="preferences_wrapper">
-      <v-card title="热门课程" link-title="全部课程" type="course" link="/pages/course/index">
+      <v-card title="热门课程" link-title="全部课程" type="course" link="/pages/tabbar/course/index">
         <v-card-list type="course" :list="courseList"></v-card-list>
       </v-card>
-      <v-card title="名师大咖" link-title="全部名师" type="teacher" link="/pages/teacher/index">
+      <v-card title="名师大咖" link-title="全部名师" type="teacher" link="/pages/teacher/list/index">
         <v-card-list type="teacher" :list="teacherList"></v-card-list>
       </v-card>
     </view>
@@ -88,7 +88,9 @@ function focus() {
 <style scoped lang="scss">
 @import '@/static/styles/_global.scss';
 @import '@/static/styles/_uni-defult.scss';
-
+.home {
+  min-height: 100vh;
+}
 .header {
   position: fixed;
   top: 0;

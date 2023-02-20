@@ -1,15 +1,15 @@
 <!--
  * @Author: 朽木白
- * @Date: 2022-08-22 17:06:51
+ * @Date: 2022-08-26 15:25:11
  * @LastEditors: 1547702880@@qq.com
- * @LastEditTime: 2023-02-20 17:25:59
- * @Description: 课程列表
+ * @LastEditTime: 2023-02-20 16:17:35
+ * @Description: 课程收藏列表页
 -->
 <template>
-  <view class="container course">
+  <view class="container collect">
     <view class="course_list">
-      <view v-for="item in list" :key="item.id" class="course_list_item">
-        <navigator class="course_list_item_a" :url="'/pages/course/detail/index?id=' + item.id">
+      <view v-for="item in state.list" :key="item.id" class="course_list_item">
+        <navigator class="course_list_item_a" :url="'/pages/course/detail/index?id=' + item.courseId">
           <view class="item_cover">
             <image :src="item.cover" />
           </view>
@@ -17,86 +17,76 @@
             <h3 class="content_title">{{ item.title }}</h3>
             <view class="content_price">
               <view class="price">¥{{ item.price }}</view>
-              <view class="buy_num">{{ item.buyCount }}人已购买</view>
+              <view class="buy_num">{{ item.lessonNum }}人已学习</view>
             </view>
           </view>
         </navigator>
       </view>
       <!-- 加载更多 -->
       <view class="load_more">
-        <uni-load-more :status="status" />
+        <uni-load-more :status="state.status" />
       </view>
     </view>
-
-    <v-back-top></v-back-top>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { onLoad, onReachBottom, onPageScroll } from '@dcloudio/uni-app'
+import { reactive } from 'vue'
 import courseService from '@/api/course'
-import UniLoadMore from '@dcloudio/uni-ui/lib/uni-load-more/uni-load-more.vue'
-import VBackTop from '@/components/v-back-top/v-back-top.vue'
-const list = ref([]) as any
-const params = reactive({
-  page: 1,
-  limit: 10,
-})
-const status = ref('more')
+import { onShow, onReachBottom } from '@dcloudio/uni-app'
 
-onLoad((options) => {
-  getCourseList()
+let state = reactive({
+  list: [] as any,
+  params: {
+    page: 1,
+    limit: 10,
+  },
+  status: 'more',
+})
+
+onShow(() => {
+  getCollectList()
 })
 
 onReachBottom(() => {
-  if (status.value !== 'noMore') {
-    status.value = 'loading'
-    params.page++
-    getCourseList()
+  if (state.status !== 'noMore') {
+    state.status = 'loading'
+    state.params.page++
+    getCollectList()
   }
 })
-onPageScroll((res) => {
-  uni.$emit('onPageScroll', res)
-})
 
-async function getCourseList() {
+async function getCollectList() {
   try {
-    const res: any = await courseService.courseList({
-      ...params,
+    const res: any = await courseService.courseCollectList({
+      ...state.params,
     })
+
     const items = res.data.items
     // 数组解构拼接
-    list.value = [...list.value, ...items]
-    if (items.length < 10) return (status.value = 'noMore')
-    if (items.length >= 10) status.value = 'more'
+    state.list = [...state.list, ...items]
+    if (items.length < 10) return (state.status = 'noMore')
+    if (items.length >= 10) state.status = 'more'
   } catch (e) {
     console.log('e', e)
   }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @import '@/static/styles/_global.scss';
-@import '@/static/styles/_uni-defult.scss';
-.course {
+
+.collect {
   min-height: 100vh;
 }
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  background: #1f2228;
-}
-
 .course_list {
   background: #000;
+  padding: 15px 15px 0;
 }
 .course_list_item {
-  padding: 15px 15px;
+  // margin: 15px 15px;
+  margin-bottom: 15px;
   background: #1f2228;
-  margin-bottom: 12px;
   &_a {
     display: flex;
     .item_cover {

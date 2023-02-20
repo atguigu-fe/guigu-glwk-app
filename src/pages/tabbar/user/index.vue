@@ -1,5 +1,5 @@
 <template>
-  <view class="container">
+  <view class="container user">
     <view class="info dark-mode">
       <h1 class="info_title">
         <image class="info_title_logo" :src="userStore.user.avatarUrl" />
@@ -7,13 +7,13 @@
       </h1>
       <view class="info_list">
         <view class="info_item">
-          <navigator class="item_a info-link" url="/pages/order/list">
+          <navigator class="item_a info-link" url="/pages/order/list/index">
             <uni-icons type="shop-filled" size="24" color="#a1a7b2"></uni-icons>
             <text class="item_dsc">我的订单</text>
           </navigator>
         </view>
         <view class="info_item">
-          <navigator class="item_a info-link" url="/pages/course/collect">
+          <navigator class="item_a info-link" url="/pages/course/collect/index">
             <uni-icons type="vip-filled" size="24" color="#a1a7b2"></uni-icons>
             <text class="item_dsc">我的收藏</text>
           </navigator>
@@ -68,6 +68,9 @@ function handleLogout() {
 
 <style scoped lang="scss">
 @import '@/static/styles/_global.scss';
+.user {
+  height: 100vh;
+}
 .info {
   &_title {
     height: 97px;

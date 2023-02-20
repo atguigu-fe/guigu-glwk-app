@@ -17,6 +17,25 @@ export const useUserStore = defineStore('user', {
       this.user = user
       uni.setStorageSync(USER_KEY, JSON.stringify(user))
     },
-    goToLogin() {},
+    goToLogin(callback: () => void) {
+      if (!this.token) {
+        uni.showModal({
+          title: '提示',
+          content: '请登录',
+          success: function (res) {
+            if (res.confirm) {
+              uni.navigateTo({
+                url: '/pages/login/index',
+              })
+              uni.clearStorageSync()
+            } else if (res.cancel) {
+              console.log('用户不想登陆')
+            }
+          },
+        })
+      } else {
+        callback()
+      }
+    },
   },
 })
