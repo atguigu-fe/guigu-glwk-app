@@ -1,7 +1,6 @@
 import { useUserStore } from '@/store/user'
-import { BASEURL, APPID } from '@/config/app'
 import type { RequestOptions } from '@/types/index'
-
+const BASEURL = 'https://gmall-prod.atguigu.cn/skb'
 class Service {
   api(opts: RequestOptions) {
     // 定义参数对象
@@ -12,7 +11,6 @@ class Service {
     const header = {
       token,
       'Content-type': 'application/json; charset=UTF-8',
-      appid: APPID,
     }
 
     return new Promise((resolve, reject) => {
